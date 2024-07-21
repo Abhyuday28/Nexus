@@ -27,7 +27,7 @@ export default function Header() {
             placeholder="Search"
           />
           <Image
-            src="/Search.svg"
+            src="/search.svg"
             width={20}
             height={20}
             alt="Search"
