@@ -12,28 +12,38 @@ import {
 } from "@/components/ui/accordion";
 import { Avatar } from "./ui/avatar";
 import UserIcon from "./userIcon";
+import { PhoneCallIcon } from "lucide-react";
 
 export default function FacultyCard() {
   const faculties = [
     {
       name: "Vijay Kumar",
       img: "https://github.com/shadcn.png",
-      isOnline: false,
+      isOnline: true,
+      branch: "CSE",
     },
   ];
 
   return (
-    <Card className="w-full border-0">
+    <Card className="border-0 w-full ">
       <CardHeader>
-        <CardTitle>Accordion Demo</CardTitle>
+        <CardTitle></CardTitle>
       </CardHeader>
-      <CardContent>
-        <Accordion type="single" collapsible className="w-full">
+      <CardContent className="">
+        <Accordion type="single" collapsible className="">
           {faculties.map((faculty) => {
             return (
               <AccordionItem value="item-1">
-                <AccordionTrigger iconClassName="hidden">
+                <AccordionTrigger
+                  // iconClassName="hidden"
+                  
+                  className="flex justify-start gap-4"
+                >
                   <UserIcon name={faculty.name} img={faculty.img} />
+                  <div className="flex flex-col items-start gap-1">
+                    <h3>{faculty.name}</h3>
+                    <h6 className="text-xs">{faculty.branch}</h6>
+                  </div>
                 </AccordionTrigger>
                 <AccordionContent>
                   Yes. It adheres to the WAI-ARIA design pattern.

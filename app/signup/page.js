@@ -27,8 +27,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { signupSchema } from "@/schema/zodSchema";
 import { signup } from "@/action/auth";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Signup() {
+  const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
+
   const form = useForm({
     resolver: zodResolver(signupSchema),
     defaultValues: {
@@ -43,12 +50,24 @@ export default function Signup() {
   });
 
   async function onSubmit(values) {
-    // const res = await signup(values);
+    try {
+      setLoading(true);
+      const res = await signup(values);
+      toast[res.type](res.message);
+      if (res.success) {
+        form.reset();
+        router.push("/login");
+      }
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
     <div className="flex items-start md:items-center justify-center min-h-[calc(100vh-64px)]">
-      <Card className="w-full max-w-lg mt-0 md:-mt-16 shadow-2xl">
+      <Card className="w-full max-w-lg mt-0 md:-mt-16 shadow-2xl p-6">
         <CardHeader>
           <CardTitle className="flex flex-col gap-2 text-base">
             Create Your
@@ -75,7 +94,11 @@ export default function Signup() {
                     <FormItem>
                       <FormLabel>First Name</FormLabel>
                       <FormControl>
-                        <Input placeholder="Abhyuday" {...field} />
+                        <Input
+                          disabled={loading}
+                          placeholder="Abhyuday"
+                          {...field}
+                        />
                       </FormControl>
                       <FormDescription>
                         Your College Roll number.
@@ -91,7 +114,7 @@ export default function Signup() {
                     <FormItem>
                       <FormLabel>Last Name (optional)</FormLabel>
                       <FormControl>
-                        <Input placeholder="" {...field} />
+                        <Input disabled={loading} placeholder="" {...field} />
                       </FormControl>
                       <FormDescription>Enter your Password</FormDescription>
                       <FormMessage />
@@ -106,7 +129,12 @@ export default function Signup() {
                   <FormItem>
                     <FormLabel>Roll Number</FormLabel>
                     <FormControl>
-                      <Input type="number" placeholder="20301" {...field} />
+                      <Input
+                        type="text"
+                        disabled={loading}
+                        placeholder="20301"
+                        {...field}
+                      />
                     </FormControl>
                     <FormDescription>Your College Roll number.</FormDescription>
                     <FormMessage />
@@ -122,6 +150,7 @@ export default function Signup() {
                     <FormControl>
                       <Input
                         type="number"
+                        disabled={loading}
                         placeholder="20105113001"
                         {...field}
                       />
@@ -140,6 +169,7 @@ export default function Signup() {
                     <FormControl>
                       <Input
                         type="email"
+                        disabled={loading}
                         placeholder="20105113001"
                         {...field}
                       />
@@ -159,6 +189,7 @@ export default function Signup() {
                       <FormControl>
                         <Input
                           type="password"
+                          disabled={loading}
                           placeholder="*********"
                           {...field}
                         />
@@ -177,6 +208,7 @@ export default function Signup() {
                       <FormControl>
                         <Input
                           type="password"
+                          disabled={loading}
                           placeholder="*********"
                           {...field}
                         />
@@ -188,7 +220,7 @@ export default function Signup() {
                 />
               </div>
 
-              <Button type="submit" className="mx-auto">
+              <Button disabled={loading} type="submit" className="mx-auto">
                 <PlusCircle className="w-4 h-4 mr-2" />
                 Create account
               </Button>

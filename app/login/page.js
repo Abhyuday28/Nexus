@@ -26,6 +26,8 @@ import { LogIn } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { loginSchema } from "@/schema/zodSchema";
+import { signIn } from "next-auth/react";
+import { toast } from "sonner";
 
 export default function Login() {
   const form = useForm({
@@ -37,14 +39,28 @@ export default function Login() {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values) {
+  async function onSubmit(values) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values);
+    try {
+      const res = await signIn("credentials", {
+        ...values,
+        redirect: false,
+      });
+      if (res?.error) {
+        toast.error(res.error);
+      } else {
+        toast.success("Signedin Successfully.");
+      }
+      console.log(res);
+    } catch (error) {
+      toast.error(error.message);
+    }
   }
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-64px)]">
-      <Card className="w-full max-w-md -mt-16 shadow-2xl">
+      <Card className="w-full max-w-md -mt-16 shadow-2xl p-6">
         <CardHeader>
           <CardTitle className="flex flex-col gap-2 text-base">
             Login to Your
@@ -84,7 +100,11 @@ export default function Login() {
                   <FormItem>
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input placeholder="*********" {...field} />
+                      <Input
+                        type="password"
+                        placeholder="*********"
+                        {...field}
+                      />
                     </FormControl>
                     <FormDescription>Enter your Password</FormDescription>
                     <FormMessage />

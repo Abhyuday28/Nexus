@@ -1,24 +1,19 @@
 import { date, z } from "zod";
 
 export const loginSchema = z.object({
-  roll: z.string().length(5, {
+  roll: z.string().max(8, {
     message: "Invalid roll number",
   }),
-  password: z.string().length(1, {
-    message: "Password is required",
+  password: z.string().min(8, {
+    message: "Password length should be 8 character long.",
   }),
 });
 
 export const signupSchema = z
   .object({
-    roll: z
-      .string()
-      .min(1, {
-        message: "Roll Number is required.",
-      })
-      .length(5, {
-        message: "Invalid roll number",
-      }),
+    roll: z.string().max(8, {
+      message: "Invalid roll number",
+    }),
     email: z.string().email(),
     password: z.string().min(8, {
       message: "Password length must be atleast 8 character long.",

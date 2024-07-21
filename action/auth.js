@@ -1,8 +1,9 @@
-import { connect_db } from "@/lib/db";
+"use server";
+import { dbConnect } from "@/lib/connection";
 import { User } from "@/model/User";
 import { signupSchema } from "@/schema/zodSchema";
 
-connect_db();
+dbConnect();
 
 export const signup = async (data) => {
   const validatedData = signupSchema.safeParse(data);
@@ -28,20 +29,50 @@ export const signup = async (data) => {
         success: false,
         type: "error",
       };
+
+    const isLE =
+      data.roll.includes("le") ||
+      data.roll.includes("Le") ||
+      data.roll.includes("LE") ||
+      data.roll.includes("lE");
+
+    const branchVal = {
+      3: "CSE",
+      1: "EEE",
+      2: "MECH",
+      4: "CIVIL",
+    };
+
+    let rollno, year;
+    if (isLE) {
+      rollno = Math.abs(parseInt(data.roll.slice(2)));
+
+      console.log(rollno, Math.floor(rollno / 1000));
+      year = Math.floor(rollno / 1000) - 1;
+    } else {
+      rollno = parseInt(data.roll);
+      year = Math.floor(rollno / 1000);
+    }
+    const branch = branchVal[Math.floor((rollno / 100) % 10)];
+
+    const newUser = await User.create({
+      firstName,
+      lastName,
+      password,
+      roll: rollno,
+      email,
+      isLE,
+      batch: year,
+      registration,
+      branch,
+    });
+
+    console.log(newUser);
+
+    return {
+      message: "Signup Successfull.",
+      success: true,
+      type: "success",
+    };
   }
-
-  await User.create({
-    firstName,
-    lastName,
-    password,
-    roll,
-    email,
-    registration,
-  });
-
-  return {
-    message: "Signup Successfull.",
-    success: true,
-    type: "success",
-  };
 };

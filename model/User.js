@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
 
 const UserSchema = mongoose.Schema({
   firstName: {
@@ -8,14 +9,27 @@ const UserSchema = mongoose.Schema({
   lastName: {
     type: String,
   },
+  email: {
+    type: String,
+  },
   roll: {
-    type: Number,
-    min: [5, "Invalid Roll Number"],
-    max: [5, "Invalid Roll Number"],
+    type: String,
     required: [true, "Roll Number is Required."],
+  },
+  isLE: {
+    type: Boolean,
+    default: false,
+  },
+  batch: {
+    type: Number,
+    required: [true, "Batch is Required."],
   },
   registration: {
     type: Number,
+  },
+  branch: {
+    type: String,
+    required: [true, "Branch is Required."],
   },
   password: {
     type: String,
@@ -25,6 +39,15 @@ const UserSchema = mongoose.Schema({
     type: Boolean,
     default: false,
   },
+});
+
+UserSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) next();
+
+  // Hash the Password
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(this.password, salt);
+  this.password = hashedPassword;
 });
 
 export const User = mongoose.models?.User || mongoose.model("User", UserSchema);
