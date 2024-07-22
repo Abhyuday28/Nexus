@@ -31,7 +31,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function Signup() {
+export default function facultysignup() {
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
@@ -41,9 +41,7 @@ export default function Signup() {
     defaultValues: {
       firstName: "",
       lastName: "",
-      roll: "",
       email: "",
-      registration: "",
       password: "",
       confirmPassword: "",
     },
@@ -96,12 +94,12 @@ export default function Signup() {
                       <FormControl>
                         <Input
                           disabled={loading}
-                          placeholder="Abhyuday"
+                          placeholder="Vijay"
                           {...field}
                         />
                       </FormControl>
                       <FormDescription>
-                        Your College Roll number.
+                        {/* Your College Roll number. */}
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -122,7 +120,7 @@ export default function Signup() {
                   )}
                 />
               </div>
-              <FormField
+              {/* <FormField
                 control={form.control}
                 name="roll"
                 render={({ field }) => (
@@ -140,8 +138,8 @@ export default function Signup() {
                     <FormMessage />
                   </FormItem>
                 )}
-              />
-              <FormField
+              /> */}
+              {/* <FormField
                 control={form.control}
                 name="registration"
                 render={({ field }) => (
@@ -159,7 +157,7 @@ export default function Signup() {
                     <FormMessage />
                   </FormItem>
                 )}
-              />
+              /> */}
               <FormField
                 control={form.control}
                 name="email"

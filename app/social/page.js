@@ -1,58 +1,32 @@
 import React from "react";
-import Link from "next/link";
 import {
-  Bell,
-  MessageCircle,
-  Search,
-  SearchIcon,
-  User,
   Paperclip,
   Camera,
-  ImageUp,
   NotepadText,
-  EllipsisVertical,
-  Save,
-  FlagIcon,
-  Share,
-  Share2,
-  EyeOff,
-  Sparkles,
-  MessageSquare,
-  UserCircleIcon,
-  Reply,
-  PlusIcon,
-  ChevronDownIcon,
+  Search,
 } from "lucide-react";
-import UserIcon from "@/components/userIcon";
-// <Camera/>
-// <ImageUp/>
-// <NotepadText/>
-/* <EllipsisVertical/> */
+
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+
+
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-import { Card, CardContent } from "@/components/ui/card";
-import { Dialogs } from "@/components/postContent";
 import Post from "@/components/post";
-// import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog";
 
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible"
+import { Button, ButtonGroup } from "@nextui-org/button";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/authOptions";
+import UserCard from "@/components/userCard";
+import { FriendList } from "@/components/friend-list";
 
-import {Button, ButtonGroup} from "@nextui-org/button";
-
-const Social = () => {
+const Social = async () => {
   const isOnline = true;
 
   const posts = [
@@ -63,7 +37,7 @@ const Social = () => {
         isOnline: true,
       },
       created_at: Date.now(),
-      content: "/postPic.webp",
+      content: "/groot.jpg",
       likes: [3, 1],
       comments: [],
     },
@@ -74,14 +48,18 @@ const Social = () => {
         isOnline: false,
       },
       created_at: Date.now(),
-      content: "/pic2.jpg",
+      content: "/spiderman2.jpg",
       likes: [],
       comments: [],
     },
   ];
 
+  const session = await getServerSession(authOptions);
+
+  console.log(session);
+
   return (
-    <div className=" px-20 pt-6 grid grid-cols-10  gap-5 relative ">
+    <div className=" px-20 pt-6 grid grid-cols-10 gap-2 relative ">
       {/* leftSide */}
       <div className="h-auto col-span-2 p-2 border rounded-md overflow-hidden hidden xl:block">
         <div className="p-5 grid gap-5">
@@ -136,140 +114,68 @@ const Social = () => {
         </div>
 
         {/* post contents */}
-        {posts.map((post) => (
-          <Post post={post} />
+        {posts.map((post, i) => (
+          <Post key={i} post={post} />
         ))}
       </div>
 
       {/* right */}
       <div className="col-span-3">
+        {/* user info. Card */}
+        <UserCard />
 
-{/* user info. Card */}
-    <div className="border border-1 pt-14 rounded-2xl bg-cover bg-center"
-    style={{ backgroundImage: "url('/bgbanner.jpg')" }}
-    >
-    <Card className=" mt-auto max-w-md mx-auto rounded-2xl">
-      <div className="relative h-10">
-        <Avatar className="absolute -top-6 left-1/2 -translate-x-1/2 w-16 h-16 border-4 border-lime-300">
-          <AvatarImage src="/placeholder-user.jpg" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
-      </div>
-      <CardContent className="text-center">
-        <div className="space-y-1">
-          <h3 className="text-xl font-semibold">User Name</h3>
-          <p className="text-sm text-muted-foreground">@20300</p>
-          <p className="text-sm leading-relaxed text-muted-foreground">
-            Passionate software engineer, always learning and exploring new technologies.
-          </p>
+        <div className="py-4 max-w-md ">
+          <div className="border rounded-lg">
+            <div className="flex justify-center">
+            <div className="text-xl font-semibold p-2">PEERS</div>
+            </div>
+            <div className="flex justify-between item-center px-4 p-2 border-b border-t">
+              <div className="flex gap-2">
+                <Select>
+                 <SelectTrigger className="w-auto">
+                   <SelectValue placeholder="Branch" />
+                 </SelectTrigger>
+                 <SelectContent>
+                   <SelectItem value="CSE">CSE</SelectItem>
+                   <SelectItem value="EEE">EEE</SelectItem>
+                   <SelectItem value="CIVIL">CIVIL</SelectItem>
+                   <SelectItem value="MECH">MECH</SelectItem>
+                 </SelectContent>
+               </Select>
+                <Select>
+                 <SelectTrigger className="w-auto">
+                   <SelectValue placeholder="Year" />
+                 </SelectTrigger>
+                 <SelectContent>
+                   <SelectItem value="light">CSE</SelectItem>
+                   <SelectItem value="dark">Dark</SelectItem>
+                   <SelectItem value="system">System</SelectItem>
+                 </SelectContent>
+               </Select>
+             </div>
+
+              <div className="flex items-center realtive border rounded-md">
+                <div>
+                <input type="text" 
+                className=" py-2 rounded-md"
+                placeholder="Search"
+                />
+                </div>
+                <Search className="w-4 h-4 absolute ml-1"/>
+              </div>
+           </div>
+
+               <div>
+                <FriendList/>
+               </div>
+               
+            </div>
+
+          {/* <div className="bg-red-500">asdfg</div> */}
         </div>
 
-       <div className="grid grid-cols-4 pt-4 ">
-       <div className="col-span-1 flex rounded-l-xl bg-lime-200 h-4">
-        </div>
-       <div className="col-span-1 flex  bg-lime-300 h-4">
-        </div>
-       <div className="col-span-1 flex  bg-lime-400 h-4">
-        </div>
-       <div className="col-span-1 flex rounded-r-xl bg-lime-500 h-4">
-        </div>
-       </div>
-
-      </CardContent>
-    </Card>
-    </div>
-    
-        {/* <div className="border bg-background m-6 px-4 rounded-md flex justify-center bg-black">
-        <div className="border rounded-full -mt-6 ring-2 ring-lime-400">
-        <UserIcon  name='Ram' img=''/> */}
-        
-        {/* <div>
-        <h1 className="capitalize font-semibold">Abhyuday</h1>
-        <h1 className="uppercase text-sm">cse</h1>
-        </div> */}
-        {/* </div> */}
-      {/* </div> */}
-
-      <div className=" ">
-      <div className="py-4 flex justify-center">
-
-      <div className="w-full border gap-4 flex-col flex rounded-lg">
-
-      <div>
-      <div className="text-center border-b p-4">
-        <div className="">YOUR PRIORITY</div>
-      </div>
-      <div className="h-auto flex flex-col border-b">
-        <button className=" text-6xl flex justify-center ">
-          <PlusIcon className="h-12 w-12 hover:bg-slate-100 rounded-lg" />
-        </button>
-        </div>
       </div>
 
-      <Collapsible>
-<CollapsibleContent>
-        <div className="w-full flex flex-col gap-4 px-4">
-          <button className="bg-slate-100 hover:bg-slate-200 p-2 rounded-lg">
-            Add
-          </button>
-          <button className="bg-slate-100 hover:bg-slate-200 p-2 rounded-lg">
-            Remove
-          </button>
-        </div>
-</CollapsibleContent>
-  <CollapsibleTrigger className="">
-       <button className=" mx-[233px] mt-2">
-          <ChevronDownIcon className="h-7 w-7" />
-        </button>
-   </CollapsibleTrigger>
- 
-</Collapsible>
-    </div>
-      </div>
-
-      {/* <div className="">
-      <Collapsible>
-  <CollapsibleTrigger>Can I use this in my project?</CollapsibleTrigger>
-  <CollapsibleContent>
-    Yes. Free to use for personal and commercial projects. No attribution
-    required.
-  </CollapsibleContent>
-</Collapsible>
-
-
-<Collapsible>
-<CollapsibleContent>
-<div className="h-auto flex flex-col gap-4">
-        <button className=" text-6xl flex justify-center ">
-          <PlusIcon className="h-12 w-12 hover:bg-slate-100 rounded-lg" />
-        </button>
-        <div className="w-full flex flex-col gap-4 px-4">
-          <button className="bg-slate-100 hover:bg-slate-200 p-2 rounded-lg">
-            Add
-          </button>
-          <button className="bg-slate-100 hover:bg-slate-200 p-2 rounded-lg">
-            Remove
-          </button>
-        </div>
-        <button className="mx-auto">
-          <ChevronDownIcon className="h-5 w-5" />
-        </button>
-      </div>
-</CollapsibleContent>
-  <CollapsibleTrigger>
-       <button className=" ">
-          <ChevronDownIcon className="h-5 w-5" />
-        </button>
-   </CollapsibleTrigger>
- 
-</Collapsible>
-
-      </div> */}
-      <div className="bg-red-400">asdfg</div>
-      <div className="bg-red-500">asdfg</div>
-      </div>
-
-      </div>
     </div>
   );
 };

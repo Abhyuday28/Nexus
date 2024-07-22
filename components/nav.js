@@ -6,7 +6,9 @@ import { usePathname } from "next/navigation";
 const Nav = () => {
   const pathName = usePathname();
 
-  return pathName === "/login" || pathName === "/signup" ? null : (
+  return pathName === "/login" ||
+    pathName === "/signup" ||
+    pathName === "/" ? null : (
     <nav className="h-16 p-2 grid  grid-cols-10 gap-4 px-8 sticky top-16 z-50 bg-background">
       <Link
         href={"/academic"}

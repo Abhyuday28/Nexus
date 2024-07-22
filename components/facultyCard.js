@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/accordion";
 import { Avatar } from "./ui/avatar";
 import UserIcon from "./userIcon";
-import { PhoneCallIcon } from "lucide-react";
+import { MessageCircleIcon, PhoneCallIcon } from "lucide-react";
 
 export default function FacultyCard() {
   const faculties = [
@@ -29,20 +29,24 @@ export default function FacultyCard() {
       <CardHeader>
         <CardTitle></CardTitle>
       </CardHeader>
-      <CardContent className="">
-        <Accordion type="single" collapsible className="">
+      <CardContent className=" ">
+        <Accordion type="single" collapsible className="border-b-0 ">
           {faculties.map((faculty) => {
             return (
               <AccordionItem value="item-1">
                 <AccordionTrigger
-                  // iconClassName="hidden"
-                  
-                  className="flex justify-start gap-4"
+                  iconClassName="hidden"
+                  className="flex justify-start gap-5 "
                 >
                   <UserIcon name={faculty.name} img={faculty.img} />
                   <div className="flex flex-col items-start gap-1">
                     <h3>{faculty.name}</h3>
                     <h6 className="text-xs">{faculty.branch}</h6>
+                  </div>
+
+                  <div className="flex justify-end gap-6">
+                    <MessageCircleIcon className=""/>
+                    {/* <MessageCircleIcon className=""/> */}
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>

@@ -1,5 +1,6 @@
 "use server";
 import { dbConnect } from "@/lib/connection";
+import { College } from "@/model/College";
 import { User } from "@/model/User";
 import { signupSchema } from "@/schema/zodSchema";
 
@@ -47,13 +48,22 @@ export const signup = async (data) => {
     if (isLE) {
       rollno = Math.abs(parseInt(data.roll.slice(2)));
 
-      console.log(rollno, Math.floor(rollno / 1000));
-      year = Math.floor(rollno / 1000) - 1;
+      year =
+        Math.floor(new Date().getFullYear() / 100) * 100 +
+        Math.floor(rollno / 1000) -
+        1;
     } else {
       rollno = parseInt(data.roll);
-      year = Math.floor(rollno / 1000);
+      year =
+        Math.floor(new Date().getFullYear() / 100) * 100 +
+        Math.floor(rollno / 1000);
     }
+    
     const branch = branchVal[Math.floor((rollno / 100) % 10)];
+
+    const collegeCode = registration?.toString().slice(5, 8) || null;
+
+    const college = await College.findOne({ code: parseInt(collegeCode) });
 
     const newUser = await User.create({
       firstName,
@@ -65,9 +75,8 @@ export const signup = async (data) => {
       batch: year,
       registration,
       branch,
+      college: college?._id,
     });
-
-    console.log(newUser);
 
     return {
       message: "Signup Successfull.",

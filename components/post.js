@@ -1,27 +1,17 @@
 import React from "react";
 import {
   EllipsisVertical,
-  Save,
   FlagIcon,
-  Share,
   Share2,
   EyeOff,
-  Sparkles,
-  MessageSquare,
-  UserCircleIcon,
-  Reply,
+  Pin,
 } from "lucide-react";
 import UserIcon from "@/components/userIcon";
-// <Camera/>
-// <ImageUp/>
-// <NotepadText/>
-/* <EllipsisVertical/> */
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
@@ -68,7 +58,7 @@ const Post = ({ post }) => {
                 {/* <DropdownMenuLabel>My Account</DropdownMenuLabel> */}
                 {/* <DropdownMenuSeparator /> */}
                 <DropdownMenuItem>
-                  <Save className="mr-2 w-4 h-4" />
+                  <Pin className="mr-2 w-4 h-4" />
                   Save
                 </DropdownMenuItem>
                 <DropdownMenuItem>

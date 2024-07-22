@@ -1,12 +1,25 @@
 import React from "react";
-import { Paperclip, Camera, NotepadText, PhoneCallIcon, MessageCircle, HomeIcon, ListRestart } from "lucide-react";
+import {
+  Paperclip,
+  Camera,
+  NotepadText,
+  HomeIcon,
+  PlusIcon,
+  ChevronDownIcon,
+  Pin,
+} from "lucide-react";
 import UserIcon from "@/components/userIcon";
 import FacultyCard from "@/components/facultyCard";
 import Post from "@/components/post";
-import { Card, CardContent } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Accordion } from "@/components/ui/accordion";
-import {Button} from "@nextui-org/button";
+import { Button } from "@nextui-org/button";
+import UserCard from "@/components/userCard";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+
 
 const Academic = () => {
   // const isOnline = true;
@@ -72,36 +85,35 @@ const Academic = () => {
   ];
 
   return (
-    <div className=" px-20 pt-6 grid grid-cols-10 gap-5 relative ">
+    <div className=" px-20 pt-6 grid grid-cols-10 gap-2 relative ">
+
+      
       {/* leftSide -------------------*/}
       <div className="h-screen col-span-2 overflow-hidden hidden xl:block relative">
         <div className="p-2 grid gap-3  sticky left-0 top-0">
           {/* <h3 className="justify-center flex text-xl font-semibold">HOME</h3> */}
-          <button className=" border border-1 p-1 justify-center flex gap-2 rounded-md font-semibold">
-            <HomeIcon/>
+          <button className=" border border-1 p-1 justify-center flex gap-3 rounded-md font-semibold">
+            <HomeIcon />
             HOME
           </button>
-          <button className=" border border-1 p-1 justify-center flex gap-2 rounded-md font-semibold">
-            <ListRestart/>
-            LATEST
+          <button className=" border border-1 p-1 justify-center flex gap-3 rounded-md font-semibold">
+            <Pin/>
+            SAVED
           </button>
-          {/* <button className=" border border-1 p-1 justify-center flex gap-2 rounded-md font-semibold">
-            LATEST
-          </button> */}
+        
 
-<Accordion/>
-          <div className=" border border-1 flex items-center rounded-md ">
+          {/* <Accordion /> */}
+          < >
+          <div className=" border border-1 flex items-center rounded-md">
             <FacultyCard />
-            <MessageCircle className=" mr-5"/>
           </div>
           <div className=" border border-1 flex items-center rounded-md ">
             <FacultyCard />
-            <MessageCircle className=" mr-5"/>
           </div>
           <div className=" border border-1 flex items-center rounded-md ">
             <FacultyCard />
-            <MessageCircle className=" mr-5"/>
           </div>
+          </>
 
           {/* <div className="h-9 border rounded-md"></div>
           <div className="h-9 border rounded-md"></div>
@@ -155,49 +167,44 @@ const Academic = () => {
 
       {/* right */}
       <div className="col-span-3">
+        <UserCard />
 
+        <div className="py-4 flex justify-center">
+            <div className=" border gap-4 flex-col flex rounded-lg w-full">
+              <div>
+                <div className="text-center border-b p-4">
+                  <div className="">YOUR PRIORITY</div>
+                </div>
+                <div className="h-auto flex flex-col border-b">
+                  <button className=" text-6xl flex justify-center ">
+                    <PlusIcon className="h-12 w-12 hover:bg-slate-100 rounded-lg" />
+                  </button>
+                </div>
+              </div>
 
-      <div className="border border-1 pt-14 bg-cover bg-center rounded-2xl"
-             style={{ backgroundImage: "url('/bgbanner.jpg')" }}
-      >
-    <Card className=" mt-auto w-full max-w-md mx-auto rounded-2xl">
-      <div className="relative h-10">
-        <Avatar className="absolute -top-6 left-1/2 -translate-x-1/2 w-16 h-16 border-4 border-lime-300">
-          <AvatarImage src="/placeholder-user.jpg" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
-      </div>
-      <CardContent className="text-center">
-        <div className="space-y-1">
-          <h3 className="text-xl font-semibold">User Name</h3>
-          <p className="text-sm text-muted-foreground">@20300</p>
-          <p className="text-sm leading-relaxed text-muted-foreground">
-            Passionate software engineer, always learning and exploring new technologies.
-          </p>
+              <Collapsible>
+                <CollapsibleContent>
+                  <div className="w-full flex flex-col gap-2 px-4">
+                    <button className="bg-slate-100 hover:bg-slate-200 p-2 rounded-lg transition-colors duration-300">
+                      Class Routine
+                    </button>
+                    <button className="bg-slate-100 hover:bg-slate-200 p-2 rounded-lg transition-colors duration-300">
+                      Syllabus
+                    </button>
+                  </div>
+                </CollapsibleContent>
+                <CollapsibleTrigger className="w-full flex justify-center items-center p-2">
+                  <ChevronDownIcon className="h-7 w-7" />
+                </CollapsibleTrigger>
+              </Collapsible>
+            </div>
+          </div>
+        <div className="mt-10">
+          <div className="bg-red-200">asdfg</div>
+          <div className="bg-red-300">asdfg</div>
+          <div className="bg-red-400">asdfg</div>
+          <div className="bg-red-500">asdfg</div>
         </div>
-
-       <div className="grid grid-cols-4 pt-4 ">
-       <div className="col-span-1 flex rounded-l-xl bg-lime-200 h-4">
-        </div>
-       <div className="col-span-1 flex  bg-lime-300 h-4">
-        </div>
-       <div className="col-span-1 flex  bg-lime-400 h-4">
-        </div>
-       <div className="col-span-1 flex rounded-r-xl bg-lime-500 h-4">
-        </div>
-       </div>
-
-      </CardContent>
-    </Card>
-    </div>
-
-    <div className="mt-10">
-      <div className="bg-red-200">asdfg</div>
-      <div className="bg-red-300">asdfg</div>
-      <div className="bg-red-400">asdfg</div>
-      <div className="bg-red-500">asdfg</div>
-      </div>
-
       </div>
     </div>
   );

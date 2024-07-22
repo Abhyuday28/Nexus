@@ -28,8 +28,11 @@ import Link from "next/link";
 import { loginSchema } from "@/schema/zodSchema";
 import { signIn } from "next-auth/react";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
+  const router = useRouter();
+
   const form = useForm({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -38,11 +41,7 @@ export default function Login() {
     },
   });
 
-  // 2. Define a submit handler.
   async function onSubmit(values) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
     try {
       const res = await signIn("credentials", {
         ...values,
@@ -51,9 +50,9 @@ export default function Login() {
       if (res?.error) {
         toast.error(res.error);
       } else {
-        toast.success("Signedin Successfully.");
+        toast.success("Login Successfully.");
+        router.push("/academic");
       }
-      console.log(res);
     } catch (error) {
       toast.error(error.message);
     }
@@ -78,6 +77,7 @@ export default function Login() {
             <form
               onSubmit={form.handleSubmit(onSubmit)}
               className="space-y-8 flex flex-col"
+              autoComplete="off"
             >
               <FormField
                 control={form.control}
@@ -111,7 +111,7 @@ export default function Login() {
                   </FormItem>
                 )}
               />
-              <Link href={"/"} className="text-blue-400 ml-auto text-xs">
+              <Link href={"#"} className="text-blue-400 ml-auto text-xs">
                 forgot password?
               </Link>
               <Button type="submit" className="mx-auto">

@@ -11,10 +11,12 @@ const UserSchema = mongoose.Schema({
   },
   email: {
     type: String,
+    unique: true,
   },
   roll: {
     type: String,
     required: [true, "Roll Number is Required."],
+    unique: true,
   },
   isLE: {
     type: Boolean,
@@ -26,6 +28,7 @@ const UserSchema = mongoose.Schema({
   },
   registration: {
     type: Number,
+    unique: true,
   },
   branch: {
     type: String,
@@ -38,6 +41,10 @@ const UserSchema = mongoose.Schema({
   isOnline: {
     type: Boolean,
     default: false,
+  },
+  college: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "College",
   },
 });
 
