@@ -15,14 +15,11 @@ export const middleware = async (req) => {
   if (isApiRoute) return null;
 
   if (isAuthRoutes) {
-    console.log("/academic");
-
     if (isLoggedIn) return NextResponse.redirect(new URL("/academic", nextUrl));
     else return null;
   }
 
   if (!isLoggedIn && !isPublicRoute) {
-    console.log("/login");
     return NextResponse.redirect(new URL("/login", nextUrl));
   }
 
