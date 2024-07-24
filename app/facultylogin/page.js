@@ -29,7 +29,7 @@ import { loginSchema } from "@/schema/zodSchema";
 import { signIn } from "next-auth/react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import LoginSignupNav from "../loginsignupnav/page";
+import LoginSignupNav from "@/components/loginSignupNav";
 
 export default function FacultyLogin() {
   const router = useRouter();
@@ -72,7 +72,7 @@ export default function FacultyLogin() {
             </span>
           </CardTitle>
           {/* <CardDescription>Login to acess</CardDescription> */}
-          <LoginSignupNav/>
+          <LoginSignupNav />
         </CardHeader>
         <CardContent>
           <Form {...form}>

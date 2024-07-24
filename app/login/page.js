@@ -29,7 +29,7 @@ import { loginSchema } from "@/schema/zodSchema";
 import { signIn } from "next-auth/react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import LoginSignupNav from "../loginsignupnav/page";
+import LoginSignupNav from "@/components/loginSignupNav";
 
 export default function Login() {
   const router = useRouter();

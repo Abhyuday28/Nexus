@@ -30,7 +30,7 @@ import { signup } from "@/action/auth";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import LoginSignupNav from "../loginsignupnav/page";
+import LoginSignupNav from "@/components/loginSignupNav";
 
 export default function Signup() {
   const [loading, setLoading] = useState(false);
@@ -90,9 +90,7 @@ export default function Signup() {
               Student
             </button>
           </div> */}
-          <LoginSignupNav/>
-
-
+          <LoginSignupNav />
         </CardHeader>
         <CardContent>
           <Form {...form}>
