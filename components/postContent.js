@@ -17,13 +17,14 @@ To read more about using these font, please visit the Next.js documentation:
 - App Directory: https://nextjs.org/docs/app/building-your-application/optimizing/fonts
 - Pages Directory: https://nextjs.org/docs/pages/building-your-application/optimizing/fonts
 **/
-import { Card } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog";
 
-export function PostContent({ img }) {
+export function PostContent({ content }) {
   return (
-    <Card className="w-full max-w-md">
-      <Dialog>
+    <section className="w-full max-w-md">
+      {content ? <article className="">{content}</article> : null}
+      {/* <Dialog>
         <DialogTrigger asChild>
           <div className="cursor-pointer">
             <img
@@ -44,7 +45,7 @@ export function PostContent({ img }) {
             className="object-contain w-full"
           />
         </DialogContent>
-      </Dialog>
-    </Card>
+      </Dialog> */}
+    </section>
   );
 }

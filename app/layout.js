@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import { Toaster } from "@/components/ui/sonner";
 import Providers from "./Providers";
+import Footer from "@/components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
           {children}
           <Toaster/>
         </Providers>
+        <Footer/>
       </body>
     </html>
   );

@@ -31,7 +31,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import LoginSignupNav from "../loginsignupnav/page";
 
-export default function Login() {
+export default function FacultyLogin() {
   const router = useRouter();
 
   const form = useForm({
@@ -52,7 +52,7 @@ export default function Login() {
         toast.error(res.error);
       } else {
         toast.success("Login Successfully.");
-        window.location.reload();
+        router.push("/academic");
       }
     } catch (error) {
       toast.error(error.message);
@@ -71,8 +71,8 @@ export default function Login() {
               Account
             </span>
           </CardTitle>
-          <LoginSignupNav />
           {/* <CardDescription>Login to acess</CardDescription> */}
+          <LoginSignupNav/>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -83,14 +83,14 @@ export default function Login() {
             >
               <FormField
                 control={form.control}
-                name="roll"
+                name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Roll Number</FormLabel>
+                    <FormLabel>Enter your email</FormLabel>
                     <FormControl>
-                      <Input placeholder="20301" {...field} />
+                      <Input placeholder="abcd12@gmail.com" {...field} />
                     </FormControl>
-                    <FormDescription>Your College Roll number.</FormDescription>
+                    <FormDescription>Nexus registered e-mail</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}

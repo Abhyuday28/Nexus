@@ -1,14 +1,14 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const Nav = () => {
   const pathName = usePathname();
+  const session = useSession();
 
-  return pathName === "/login" ||
-    pathName === "/signup" ||
-    pathName === "/" ? null : (
+  return session.status !== "authenticated" ? null : (
     <nav className="h-16 p-2 grid  grid-cols-10 gap-4 px-8 sticky top-16 z-50 bg-background">
       <Link
         href={"/academic"}

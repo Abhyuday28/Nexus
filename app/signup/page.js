@@ -30,6 +30,7 @@ import { signup } from "@/action/auth";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import LoginSignupNav from "../loginsignupnav/page";
 
 export default function Signup() {
   const [loading, setLoading] = useState(false);
@@ -79,6 +80,19 @@ export default function Signup() {
             </span>
           </CardTitle>
           {/* <CardDescription>Login to acess</CardDescription> */}
+
+          {/* loginsignupnav alt--------------- */}
+          {/* <div className="grid grid-cols-4 gap-2">
+            <button className=" col-span-2 border border-1 rounded-md font-semibold p-2 ">
+              Faculty
+            </button>
+            <button className="col-span-2 border border-1  rounded-md font-semibold p-2 ">
+              Student
+            </button>
+          </div> */}
+          <LoginSignupNav/>
+
+
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -86,7 +100,7 @@ export default function Signup() {
               onSubmit={form.handleSubmit(onSubmit)}
               className="flex flex-col gap-4"
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <div className="grid grid-cols- md:grid-cols-2 gap-2">
                 <FormField
                   control={form.control}
                   name="firstName"

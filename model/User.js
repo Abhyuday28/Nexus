@@ -1,22 +1,30 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 
-const UserSchema = mongoose.Schema({
+const UserSchema = new mongoose.Schema({
   firstName: {
     type: String,
     required: [true, "First Name is Required."],
+    trim: true,
   },
   lastName: {
     type: String,
+    trim: true,
   },
   email: {
     type: String,
+    trim: true,
     unique: true,
   },
   roll: {
     type: String,
     required: [true, "Roll Number is Required."],
+    trim: true,
     unique: true,
+  },
+  image: {
+    type: String,
+    trim: true,
   },
   isLE: {
     type: Boolean,
@@ -28,15 +36,22 @@ const UserSchema = mongoose.Schema({
   },
   registration: {
     type: Number,
+    required: [true, "Registration number is Required."],
     unique: true,
   },
   branch: {
     type: String,
     required: [true, "Branch is Required."],
+    trim: true,
   },
   password: {
     type: String,
     required: [true, "Password is Required."],
+  },
+  role: {
+    type: String,
+    enum: ["Faculty", "Student", "Admin"],
+    default: "Student",
   },
   isOnline: {
     type: Boolean,

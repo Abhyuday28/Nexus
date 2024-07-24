@@ -30,12 +30,9 @@ export const signupSchema = z
         message: "Last Name is too large",
       })
       .optional(),
-    registration: z
-      .string()
-      .max(11, {
-        message: "invalid Registration Number.",
-      })
-      .optional(),
+    registration: z.string().length(11, {
+      message: "invalid Registration Number.",
+    }),
   })
   .refine(
     (data) => {

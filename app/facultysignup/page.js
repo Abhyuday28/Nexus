@@ -30,6 +30,7 @@ import { signup } from "@/action/auth";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import LoginSignupNav from "../loginsignupnav/page";
 
 export default function facultysignup() {
   const [loading, setLoading] = useState(false);
@@ -77,6 +78,7 @@ export default function facultysignup() {
             </span>
           </CardTitle>
           {/* <CardDescription>Login to acess</CardDescription> */}
+          <LoginSignupNav/>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -114,7 +116,7 @@ export default function facultysignup() {
                       <FormControl>
                         <Input disabled={loading} placeholder="" {...field} />
                       </FormControl>
-                      <FormDescription>Enter your Password</FormDescription>
+                      <FormDescription></FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -172,7 +174,7 @@ export default function facultysignup() {
                         {...field}
                       />
                     </FormControl>
-                    <FormDescription>Your College Email.</FormDescription>
+                    <FormDescription>Your Official Email.</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -211,7 +213,7 @@ export default function facultysignup() {
                           {...field}
                         />
                       </FormControl>
-                      <FormDescription>Enter your Password</FormDescription>
+                      <FormDescription>Re-enter your Password</FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}

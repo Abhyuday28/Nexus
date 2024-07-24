@@ -68,7 +68,11 @@ export const authOptions = {
         token.batch = user.batch;
         token.registration = user.registration;
         token.isLE = user.isLE;
+        token.image = user.image;
         token.branch = user.branch;
+        token.roll = user.roll;
+        token.role = user.role;
+        token.college = user.college;
       }
       return token;
     },

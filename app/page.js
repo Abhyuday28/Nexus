@@ -30,7 +30,7 @@ export default function Component() {
               className="h-full w-full object-cover"
             />
           </div>
-          <div className="relative z-10 flex h-full w-full flex-col items-center justify-center space-y-6 px-4 text-center text-primary-foreground">
+          <div className="relative z-10 flex h-full w-full flex-col items-center justify-center space-y-4 px-4 text-center text-primary-foreground">
             <div className="space-y-3 animate-fade-in-up">
               <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
                 Unleash Your Digital Potential

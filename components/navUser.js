@@ -1,17 +1,18 @@
-"use client";
-
-import { signOut, useSession } from "next-auth/react";
-import { Skeleton } from "./ui/skeleton";
 import { Button } from "@nextui-org/button";
-import { User } from "lucide-react";
 import Link from "next/link";
+import { getCollege } from "@/action/post";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/authOptions";
+import Image from "next/image";
 
-const NavUser = () => {
-  const session = useSession();
+const NavUser = async () => {
+  const session = await getServerSession(authOptions);
 
-  return session?.status === "loading" ? (
-    <Skeleton className={"w-12 h-12 rounded-full"} />
-  ) : session?.data?.user ? (
+  const res = session && (await getCollege(session.user.college));
+
+  const college = res?.data;
+
+  return session?.user ? (
     <div className="flex gap-6 items-center">
       {/* <button className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
         <MessageCircle />
@@ -19,9 +20,15 @@ const NavUser = () => {
       {/* <button className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
         <Bell />
       </button> */}
-      <button className="w-14 h-14 rounded-full bg-gray-200 flex items-center justify-center">
-        <User/>
-      </button>
+      {college.code === 113 ? (
+        <button className="w-14 h-14 rounded-full bg-gray-200 flex items-center justify-center">
+          <img
+            src={`https://www.mcemotihari.ac.in/wp-content/themes/theme-college/assets/img/logo.jpg`}
+            width={68}
+            height={68}
+          />
+        </button>
+      ) : null}
     </div>
   ) : (
     <Button className="bg-yellow-300 rounded-xl">

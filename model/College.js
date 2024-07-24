@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const CollegeSchema = mongoose.Schema({
+const CollegeSchema = new mongoose.Schema({
   code: {
     unique: true,
     type: Number,

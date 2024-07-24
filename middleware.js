@@ -1,37 +1,34 @@
 import { getToken } from "next-auth/jwt";
+import { apiRoutePrefix, authRoutes, publicRoutes } from "./routes";
 import { NextResponse } from "next/server";
 
-const middleware = async (req) => {
-  try {
-    const token = await getToken({
-      req,
-      secret: process.env.NEXTAUTH_SECRET,
-    });
+export const middleware = async (req) => {
+  const nextUrl = req.nextUrl;
+  const pathname = req.nextUrl.pathname;
+  const token = await getToken({ req });
+  const isLoggedIn = !!token;
 
-    const { pathname } = req.nextUrl;
+  const isApiRoute = pathname.startsWith(apiRoutePrefix);
+  const isAuthRoutes = authRoutes.includes(pathname);
+  const isPublicRoute = publicRoutes.includes(pathname);
 
-    const publicUrl = pathname === "/";
-    const authUrl = pathname === "/login" || pathname === "/signup";
+  if (isApiRoute) return null;
 
-    if (!publicUrl && !token && !authUrl) {
-      return NextResponse.redirect(new URL(`/login`, req.url));
-    }
+  if (isAuthRoutes) {
+    console.log("/academic");
 
-    if (authUrl && token) {
-      return NextResponse.redirect(new URL(`/academic`, req.url));
-    }
-
-    return NextResponse.next();
-  } catch (error) {
-    console.error(error);
+    if (isLoggedIn) return NextResponse.redirect(new URL("/academic", nextUrl));
+    else return null;
   }
+
+  if (!isLoggedIn && !isPublicRoute) {
+    console.log("/login");
+    return NextResponse.redirect(new URL("/login", nextUrl));
+  }
+
+  return null;
 };
 
 export const config = {
-  matcher: [
-    "/((?!api|_next/static|_next/image|robots.txt|public|images|manifest.json|sw.js|favicon.ico|workbox-*).*)",
-    "/",
-  ],
+  matcher: ["/((?!api|static|.*\\..*|_next).*)", "/"],
 };
-
-export default middleware;
