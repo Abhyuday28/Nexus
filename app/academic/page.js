@@ -27,11 +27,11 @@ const Academic = async () => {
       {/* leftSide -------------------*/}
       <div className="h-auto col-span-2 overflow-hidden hidden xl:block relative max-w-md border-r-2 border-black">
         <div className="p-4 grid gap-3  sticky left-0 top-0">
-          <button className=" border border-1 p-3 justify-center flex gap-3 rounded-md font-semibold">
+          <Link href={"/academic"} className=" border border-1 p-3 justify-center flex gap-3 rounded-md font-semibold">
             <HomeIcon />
             HOME
           </Link>
-          <button className=" border border-1 p-3 justify-center flex gap-3 rounded-md font-semibold">
+          <Link className=" border border-1 p-3 justify-center flex gap-3 rounded-md font-semibold">
             <Pin />
             SAVED
           </Link>
