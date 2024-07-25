@@ -13,9 +13,9 @@ export default function Component() {
         titleComponent={
           <>
             <h1 className="text-4xl font-semibold text-black dark:text-white">
-              Unleash the power of <br />
+              For joining Nexus events <br />
               <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
-                Scroll Animations
+                Scroll Down
               </span>
             </h1>
           </>
@@ -36,8 +36,8 @@ export default function Component() {
                 Unleash Your Digital Potential
               </h1>
               <p className="text-lg md:text-xl">
-                Discover innovative solutions to transform your business and
-                drive success.
+                Discover innovative solutions to transform your connections with
+                Academics and your Peers.
               </p>
             </div>
             <Link

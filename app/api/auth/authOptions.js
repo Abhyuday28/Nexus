@@ -4,13 +4,12 @@ import { dbConnect } from "@/lib/connection";
 import { User } from "@/model/User";
 import { loginSchema } from "@/schema/zodSchema";
 
-dbConnect();
-
 export const authOptions = {
   providers: [
     CredentialsProvider({
       async authorize(credentials, req) {
         try {
+          dbConnect();
           const validatedData = loginSchema.safeParse({
             roll: credentials.roll,
             password: credentials.password,

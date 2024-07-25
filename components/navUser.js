@@ -12,6 +12,8 @@ const NavUser = async () => {
 
   const college = res?.data;
 
+  console.log(college);
+
   return session?.user ? (
     <div className="flex gap-6 items-center">
       {/* <button className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
@@ -20,7 +22,7 @@ const NavUser = async () => {
       {/* <button className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
         <Bell />
       </button> */}
-      {college.code === 113 ? (
+      {college?.code === 113 ? (
         <button className="w-14 h-14 rounded-full bg-gray-200 flex items-center justify-center">
           <img
             src={`https://www.mcemotihari.ac.in/wp-content/themes/theme-college/assets/img/logo.jpg`}
@@ -31,9 +33,9 @@ const NavUser = async () => {
       ) : null}
     </div>
   ) : (
-    <Button className="bg-yellow-300 rounded-xl">
-      <Link href={"/login"}>Login</Link>
-    </Button>
+    <Link href={"/login"}>
+      <Button className="bg-yellow-300 rounded-xl">Login</Button>
+    </Link>
   );
 };
 

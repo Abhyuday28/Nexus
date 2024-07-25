@@ -1,62 +1,36 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/xGr3Cod6jvG
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "@/components/ui/accordion";
-import { Avatar } from "./ui/avatar";
+
 import UserIcon from "./userIcon";
-import { MessageCircleIcon, PhoneCallIcon } from "lucide-react";
+import { getFaculty } from "@/action/user";
 
-export default function FacultyCard() {
-  const faculties = [
-    {
-      name: "Vijay Kumar",
-      img: "https://github.com/shadcn.png",
-      isOnline: true,
-      branch: "CSE",
-    },
-  ];
+export default async function FacultyCard() {
+  const res = await getFaculty();
+  const userlist = res.data;
 
-  return (
-    <Card className="border-0 w-full ">
-      <CardHeader>
-        <CardTitle></CardTitle>
-      </CardHeader>
-      <CardContent className=" ">
-        <Accordion type="single" collapsible className="border-b-0 ">
-          {faculties.map((faculty) => {
-            return (
-              <AccordionItem value="item-1">
-                <AccordionTrigger
-                  iconClassName="hidden"
-                  className="flex justify-start gap-5 "
-                >
-                  <UserIcon name={faculty.name} img={faculty.img} />
-                  <div className="flex flex-col items-start gap-1">
-                    <h3>{faculty.name}</h3>
-                    <h6 className="text-xs">{faculty.branch}</h6>
-                  </div>
-
-                  <div className="flex justify-end gap-6">
-                    <MessageCircleIcon className=""/>
-                    {/* <MessageCircleIcon className=""/> */}
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
-                </AccordionContent>
-              </AccordionItem>
-            );
-          })}
-        </Accordion>
+  return userlist.length ? (
+    <Card className="w-full max-w-md border-0">
+      <CardContent className="space-y-4 p-6 max-h-[300px] overflow-auto">
+        {userlist.map((user, i) => {
+          return (
+            <button
+              key={i}
+              className="flex items-center w-full space-x-4 rounded-md border p-2 hover:bg-muted bg-cover bg-center border-1"
+              style={{ backgroundImage: "url('/bgbanner.jpg')" }}
+            >
+              <UserIcon
+                img={user.image}
+                name={`${user.firstName} ${user.lastName}`}
+              />
+              <div>
+                <p className="font-medium">
+                  {user.firstName} {user.lastName}
+                </p>
+                <p className="text-muted-foreground text-sm">{user.branch}</p>
+              </div>
+            </button>
+          );
+        })}
       </CardContent>
     </Card>
-  );
+  ) : null;
 }

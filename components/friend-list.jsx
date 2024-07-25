@@ -1,12 +1,12 @@
 
 import { Card, CardContent } from "@/components/ui/card"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
-import { getUsers } from "@/action/user";
+import { getStudents } from "@/action/user";
 import UserIcon from "./userIcon";
 
 export async function FriendList() {
 
-  const res=await getUsers()
+  const res=await getStudents()
   const userlist=res.data
 
   return (

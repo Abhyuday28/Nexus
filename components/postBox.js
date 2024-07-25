@@ -7,8 +7,10 @@ import { Skeleton } from "./ui/skeleton";
 import { useState } from "react";
 import { toast } from "sonner";
 import { addPost } from "@/action/post";
+import { usePathname } from "next/navigation";
 
 const PostBox = () => {
+  const pathname = usePathname();
   const session = useSession();
   const name = session.data?.user?.name;
   const img = session.data?.user?.image;
@@ -38,7 +40,8 @@ const PostBox = () => {
 
   return session.status === "loading" ? (
     <Skeleton className={"h-32"} />
-  ) : (
+  ) : session?.data?.user?.role === "Student" &&
+    pathname !== "/social" ? null : (
     <form
       className="border flex-col rounded-lg flex gap-4 p-4"
       onSubmit={handleSubmit}

@@ -36,17 +36,8 @@ const Academic = async () => {
           </button>
 
           {/* <Accordion /> */}
-          <>
-            <div className=" border border-1 flex items-center rounded-md">
-              <FacultyCard />
-            </div>
-            <div className=" border border-1 flex items-center rounded-md ">
-              <FacultyCard />
-            </div>
-            <div className=" border border-1 flex items-center rounded-md ">
-              <FacultyCard />
-            </div>
-          </>
+
+          <FacultyCard />
 
           {/* <div className="h-9 border rounded-md"></div>
           <div className="h-9 border rounded-md"></div>
@@ -101,12 +92,12 @@ const Academic = async () => {
             </Collapsible>
           </div>
         </div>
-        <div className="mt-10">
+        {/* <div className="mt-10">
           <div className="bg-red-200">asdfg</div>
           <div className="bg-red-300">asdfg</div>
           <div className="bg-red-400">asdfg</div>
           <div className="bg-red-500">asdfg</div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

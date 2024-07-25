@@ -158,7 +158,7 @@ export default function Signup() {
                 name="registration"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Registration Number (Optional)</FormLabel>
+                    <FormLabel>Registration Number</FormLabel>
                     <FormControl>
                       <Input
                         type="number"
