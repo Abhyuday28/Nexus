@@ -11,6 +11,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/authOptions";
 import PostBox from "@/components/postBox";
 import { getAcademicPosts } from "@/action/post";
+import Link from "next/link";
 
 const Academic = async () => {
   // const isOnline = true;
@@ -26,14 +27,14 @@ const Academic = async () => {
       {/* leftSide -------------------*/}
       <div className="h-auto col-span-2 overflow-hidden hidden xl:block relative max-w-md border-r-2 border-black">
         <div className="p-4 grid gap-3  sticky left-0 top-0">
-          <button className=" border border-1 p-1 justify-center flex gap-3 rounded-md font-semibold">
+          <button className=" border border-1 p-3 justify-center flex gap-3 rounded-md font-semibold">
             <HomeIcon />
             HOME
-          </button>
-          <button className=" border border-1 p-1 justify-center flex gap-3 rounded-md font-semibold">
+          </Link>
+          <button className=" border border-1 p-3 justify-center flex gap-3 rounded-md font-semibold">
             <Pin />
             SAVED
-          </button>
+          </Link>
 
           {/* <Accordion /> */}
 
