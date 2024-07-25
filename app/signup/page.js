@@ -79,17 +79,7 @@ export default function Signup() {
               Account
             </span>
           </CardTitle>
-          {/* <CardDescription>Login to acess</CardDescription> */}
 
-          {/* loginsignupnav alt--------------- */}
-          {/* <div className="grid grid-cols-4 gap-2">
-            <button className=" col-span-2 border border-1 rounded-md font-semibold p-2 ">
-              Faculty
-            </button>
-            <button className="col-span-2 border border-1  rounded-md font-semibold p-2 ">
-              Student
-            </button>
-          </div> */}
           <LoginSignupNav />
         </CardHeader>
         <CardContent>
@@ -108,13 +98,11 @@ export default function Signup() {
                       <FormControl>
                         <Input
                           disabled={loading}
-                          placeholder="Abhyuday"
+                          placeholder="Your name"
                           {...field}
                         />
                       </FormControl>
-                      <FormDescription>
-                        Your College Roll number.
-                      </FormDescription>
+                      <FormDescription>Your First name.</FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -128,7 +116,7 @@ export default function Signup() {
                       <FormControl>
                         <Input disabled={loading} placeholder="" {...field} />
                       </FormControl>
-                      <FormDescription>Enter your Password</FormDescription>
+                      <FormDescription>Last Name</FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -167,7 +155,9 @@ export default function Signup() {
                         {...field}
                       />
                     </FormControl>
-                    <FormDescription>Your College Roll number.</FormDescription>
+                    <FormDescription>
+                      Your College Registration no.
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -206,7 +196,7 @@ export default function Signup() {
                           {...field}
                         />
                       </FormControl>
-                      <FormDescription>Enter your Password</FormDescription>
+                      <FormDescription>Create your Password</FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -225,7 +215,7 @@ export default function Signup() {
                           {...field}
                         />
                       </FormControl>
-                      <FormDescription>Enter your Password</FormDescription>
+                      <FormDescription>Re-enter your Password</FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}

@@ -71,9 +71,9 @@ export default function Login() {
               Account
             </span>
           </CardTitle>
-          <LoginSignupNav />
           {/* <CardDescription>Login to acess</CardDescription> */}
         </CardHeader>
+        <LoginSignupNav />
         <CardContent>
           <Form {...form}>
             <form

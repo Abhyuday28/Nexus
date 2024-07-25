@@ -1,9 +1,14 @@
 import { date, z } from "zod";
 
 export const loginSchema = z.object({
-  roll: z.string().max(8, {
-    message: "Invalid roll number",
-  }),
+  roll: z
+    .string()
+    .min(5, {
+      message: "Invalid roll number",
+    })
+    .max(8, {
+      message: "Invalid roll number",
+    }),
   password: z.string().min(8, {
     message: "Password length should be 8 character long.",
   }),

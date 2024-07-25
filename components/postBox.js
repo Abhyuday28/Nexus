@@ -49,7 +49,7 @@ const PostBox = () => {
       {/* user icon and post box row */}
       <div className="flex gap-4">
         <UserIcon name={name} img={img} />
-        <input
+        <textarea
           disabled={loading}
           type="text"
           name="content"

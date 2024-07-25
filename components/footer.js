@@ -13,7 +13,7 @@ const Footer = () => {
         NEXUS
       </Link>
       <div className="text-center text-xl">About Us</div>
-      <Link href={"#"} className="text-xl">
+      <Link href={"https://github.com/Abhyuday28/Nexus"} className="text-xl">
         Contribute on Github
       </Link>
     </div>
