@@ -53,7 +53,7 @@ const PostBox = () => {
           disabled={loading}
           type="text"
           name="content"
-          className="shrink-0 border rounded-md h-10 flex-1 px-4"
+          className="shrink-0 border rounded-md h-auto flex-1 px-4 "
           placeholder="Post your thought"
         />
       </div>

@@ -6,6 +6,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "www.mcemotihari.ac.in",
       },
+      {
+        protocol: "https",
+        hostname: "keck.ac.in/",
+      },
     ],
   },
 };

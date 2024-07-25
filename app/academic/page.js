@@ -22,7 +22,7 @@ const Academic = async () => {
 
   const posts = res.data;
   return (
-    <div className=" px-20 pt-6 grid grid-cols-10 gap-2 relative ">
+    <div className="px-4 md:px-10 lg:px-20 pt-6 grid grid-cols-1 md:grid-cols-8 lg:grid-cols-10 gap-2 relative ">
       {/* leftSide -------------------*/}
       <div className="h-auto col-span-2 overflow-hidden hidden xl:block relative max-w-md border-r-2 border-black">
         <div className="p-4 grid gap-3  sticky left-0 top-0">

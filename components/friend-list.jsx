@@ -21,7 +21,11 @@ export async function FriendList() {
                 <UserIcon img={user.image} name={`${user.firstName} ${user.lastName}`}/> 
               <div>
                 <p className="font-medium">{user.firstName} {user.lastName}</p>
-                <p className="text-muted-foreground text-sm">{user.branch}</p>
+               <div className="flex items-start gap-2">
+               <p className="text-muted-foreground text-sm ">{user.branch}</p>
+               <p className="text-muted-foreground text-sm ">@{user.roll}</p>
+               </div>
+
               </div>
             </button>
           )

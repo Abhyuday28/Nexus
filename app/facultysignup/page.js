@@ -55,7 +55,7 @@ export default function facultysignup() {
       toast[res.type](res.message);
       if (res.success) {
         form.reset();
-        router.push("/login");
+        router.push("/facultylogin");
       }
     } catch (error) {
       toast.error(error.message);
@@ -72,7 +72,7 @@ export default function facultysignup() {
             Create Your
             <span className="flex flex-col items-center gap-2">
               <span>
-                <Image src={"/next.svg"} width={96} height={96} alt="logo" />
+                <Image src={"/nexus.svg"} width={96} height={96} alt="logo" />
               </span>
               Account
             </span>
@@ -96,7 +96,7 @@ export default function facultysignup() {
                       <FormControl>
                         <Input
                           disabled={loading}
-                          placeholder="Vijay"
+                          placeholder="Name"
                           {...field}
                         />
                       </FormControl>
@@ -122,44 +122,7 @@ export default function facultysignup() {
                   )}
                 />
               </div>
-              {/* <FormField
-                control={form.control}
-                name="roll"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Roll Number</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="text"
-                        disabled={loading}
-                        placeholder="20301"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormDescription>Your College Roll number.</FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              /> */}
-              {/* <FormField
-                control={form.control}
-                name="registration"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Registration Number (Optional)</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="number"
-                        disabled={loading}
-                        placeholder="20105113001"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormDescription>Your College Roll number.</FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              /> */}
+
               <FormField
                 control={form.control}
                 name="email"
@@ -174,7 +137,7 @@ export default function facultysignup() {
                         {...field}
                       />
                     </FormControl>
-                    <FormDescription>Your Official Email.</FormDescription>
+                    <FormDescription>Your official Email.</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}

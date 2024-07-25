@@ -66,7 +66,7 @@ export default function FacultyLogin() {
             Login to Your
             <span className="flex flex-col items-center gap-2">
               <span>
-                <Image src={"/next.svg"} width={96} height={96} alt="logo" />
+                <Image src={"/nexus.svg"} width={96} height={96} alt="logo" />
               </span>
               Account
             </span>

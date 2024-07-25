@@ -30,8 +30,10 @@ import { signIn } from "next-auth/react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import LoginSignupNav from "@/components/loginSignupNav";
+import loading from "../loading";
 
 export default function Login() {
+  // const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const form = useForm({
@@ -66,7 +68,7 @@ export default function Login() {
             Login to Your
             <span className="flex flex-col items-center gap-2">
               <span>
-                <Image src={"/next.svg"} width={96} height={96} alt="logo" />
+                <Image src={"/nexus.svg"} width={96} height={96} alt="logo" />
               </span>
               Account
             </span>
@@ -116,6 +118,7 @@ export default function Login() {
               <Link href={"#"} className="text-blue-400 ml-auto text-xs">
                 forgot password?
               </Link>
+              {/* disabled={loading} */}
               <Button type="submit" className="mx-auto">
                 <LogIn className="w-4 h-4 mr-2" />
                 Login
