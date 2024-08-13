@@ -40,7 +40,7 @@ const ForgotPassword = () => {
                   </FormItem>
                 )}
               />
-              <FormField
+              {/* <FormField
                 control={form.control}
                 name="password"
                 render={({ field }) => (
@@ -57,10 +57,12 @@ const ForgotPassword = () => {
                     <FormMessage />
                   </FormItem>
                 )}
-              />
-              <Link href={"#"} className="text-blue-400 ml-auto text-xs">
+              /> */}
+
+              {/* <Link href={"#"} className="text-blue-400 ml-auto text-xs">
                 forgot password?
-              </Link>
+              </Link> */}
+
               {/* disabled={loading} */}
               <Button type="submit" className="mx-auto">
                 <LogIn className="w-4 h-4 mr-2" />
