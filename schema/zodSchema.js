@@ -13,6 +13,11 @@ export const loginSchema = z.object({
     message: "Password length should be 8 character long.",
   }),
 });
+export const emailVerificationSchema = z.object({
+  otp: z.string().length(6, {
+    message: "Invalid OTP",
+  }),
+});
 
 export const facultyloginSchema = z.object({
   roll: z
@@ -53,11 +58,8 @@ export const signupSchema = z.object({
   }),
 });
 
-export const facultysignupSchema = z
+export const facultySignupSchema = z
   .object({
-    // roll: z.string().max(8, {
-    //   message: "Invalid roll number",
-    // }),
     email: z.string().email(),
     password: z.string().min(8, {
       message: "Password length must be atleast 8 character long.",
@@ -71,10 +73,6 @@ export const facultysignupSchema = z
     lastName: z.string().max(25, {
       message: "Last Name is too large",
     }),
-    //   .optional(),
-    // registration: z.string().length(11, {
-    //   message: "invalid Registration Number.",
-    // }),
   })
 
   .refine(

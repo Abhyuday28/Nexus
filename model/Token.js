@@ -11,6 +11,10 @@ const TokenSchema = new mongoose.Schema({
     required: [true, "Token is Required."],
     trim: true,
   },
+  otp: {
+    type: Number,
+    required: [true, "Otp is Required."],
+  },
   created_at: {
     type: Date,
     default: Date.now(),

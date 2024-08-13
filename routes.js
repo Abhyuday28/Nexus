@@ -3,6 +3,8 @@ export const authRoutes = [
   "/signup",
   "/facultylogin",
   "/facultysignup",
+  "/verifyOtp",
+  "/forgotpassword",
 ];
 export const publicRoutes = ["/", "/tour"];
 export const apiRoutePrefix = "/api";

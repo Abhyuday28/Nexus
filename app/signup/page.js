@@ -22,7 +22,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { LogIn, PlusCircle } from "lucide-react";
+import { PlusCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { signupSchema } from "@/schema/zodSchema";
@@ -57,7 +57,7 @@ export default function Signup() {
       toast[res.type](res.message);
       if (res.success) {
         form.reset();
-        router.push("/login");
+        router.push(`/verifyOtp?token=${res.token}`);
       }
     } catch (error) {
       toast.error(error.message);
@@ -67,8 +67,8 @@ export default function Signup() {
   }
 
   return (
-    <div className="flex items-start md:items-center justify-center min-h-[calc(100vh-64px)]">
-      <Card className="w-full max-w-lg mt-0 shadow-2xl p-6 max-h-[calc(100vh-64px)] overflow-y-auto">
+    <div className="flex items-start sm:items-center justify-center min-h-[calc(100vh-64px)]">
+      <Card className="w-full max-w-lg mt-0 shadow-2xl p-6 overflow-y-auto  sm:h-auto h-screen">
         <CardHeader>
           <CardTitle className="flex flex-col gap-2 text-base">
             Create Your
@@ -79,149 +79,153 @@ export default function Signup() {
               Account
             </span>
           </CardTitle>
-
           <LoginSignupNav />
         </CardHeader>
-        <CardContent>
+        <CardContent className="p-0">
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="flex flex-col gap-4"
+              className="flex flex-col gap-4 p-3 pt-0"
             >
-              <div className="grid grid-cols- md:grid-cols-2 gap-2">
+              <div className="flex flex-col gap-2 max-h-96 overflow-y-auto px-3">
+                <div className="grid grid-cols- md:grid-cols-2 gap-2">
+                  <FormField
+                    control={form.control}
+                    name="firstName"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>First Name</FormLabel>
+                        <FormControl>
+                          <Input
+                            disabled={loading}
+                            placeholder="Your name"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormDescription>Your First name.</FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="lastName"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Last Name (optional)</FormLabel>
+                        <FormControl>
+                          <Input disabled={loading} placeholder="" {...field} />
+                        </FormControl>
+                        <FormDescription>Last Name</FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
                 <FormField
                   control={form.control}
-                  name="firstName"
+                  name="roll"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>First Name</FormLabel>
+                      <FormLabel>Roll Number</FormLabel>
                       <FormControl>
                         <Input
+                          type="text"
                           disabled={loading}
-                          placeholder="Your name"
+                          placeholder="20301"
                           {...field}
                         />
                       </FormControl>
-                      <FormDescription>Your First name.</FormDescription>
+                      <FormDescription>
+                        Your College Roll number.
+                      </FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
                 <FormField
                   control={form.control}
-                  name="lastName"
+                  name="registration"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Last Name (optional)</FormLabel>
+                      <FormLabel>Registration Number</FormLabel>
                       <FormControl>
-                        <Input disabled={loading} placeholder="" {...field} />
+                        <Input
+                          type="number"
+                          disabled={loading}
+                          placeholder="20105113001"
+                          {...field}
+                        />
                       </FormControl>
-                      <FormDescription>Last Name</FormDescription>
+                      <FormDescription>
+                        Your College Registration no.
+                      </FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="email"
+                          disabled={loading}
+                          placeholder="asdfg@gmail.com"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormDescription>Your College Email.</FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                  <FormField
+                    control={form.control}
+                    name="password"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Password</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="password"
+                            disabled={loading}
+                            placeholder="*********"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormDescription>Create your Password</FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="confirmPassword"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Confirm Password</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="password"
+                            disabled={loading}
+                            placeholder="*********"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormDescription>
+                          Re-enter your Password
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
               </div>
-              <FormField
-                control={form.control}
-                name="roll"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Roll Number</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="text"
-                        disabled={loading}
-                        placeholder="20301"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormDescription>Your College Roll number.</FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="registration"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Registration Number</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="number"
-                        disabled={loading}
-                        placeholder="20105113001"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormDescription>
-                      Your College Registration no.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="email"
-                        disabled={loading}
-                        placeholder="asdfg@gmail.com"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormDescription>Your College Email.</FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Password</FormLabel>
-                      <FormControl>
-                        <Input
-                          type="password"
-                          disabled={loading}
-                          placeholder="*********"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormDescription>Create your Password</FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="confirmPassword"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Confirm Password</FormLabel>
-                      <FormControl>
-                        <Input
-                          type="password"
-                          disabled={loading}
-                          placeholder="*********"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormDescription>Re-enter your Password</FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-
               <Button disabled={loading} type="submit" className="mx-auto">
                 <PlusCircle className="w-4 h-4 mr-2" />
                 Create account

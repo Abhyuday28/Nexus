@@ -25,8 +25,8 @@ import {
 import { LogIn, PlusCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { signupSchema } from "@/schema/zodSchema";
-import { signup } from "@/action/auth";
+import { facultySignupSchema, signupSchema } from "@/schema/zodSchema";
+import { facultySignup, signup } from "@/action/auth";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -38,7 +38,7 @@ export default function facultysignup() {
   const router = useRouter();
 
   const form = useForm({
-    resolver: zodResolver(signupSchema),
+    resolver: zodResolver(facultySignupSchema),
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -51,11 +51,11 @@ export default function facultysignup() {
   async function onSubmit(values) {
     try {
       setLoading(true);
-      const res = await signup(values);
+      const res = await facultySignup(values);
       toast[res.type](res.message);
       if (res.success) {
         form.reset();
-        router.push("/facultylogin");
+        router.push(`/verifyOtp?token=${res.token}`);
       }
     } catch (error) {
       toast.error(error.message);
@@ -84,7 +84,7 @@ export default function facultysignup() {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="flex flex-col gap-4"
+              className="flex flex-col gap-2"
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <FormField

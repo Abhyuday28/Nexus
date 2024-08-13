@@ -1,9 +1,9 @@
-import { Button } from "@nextui-org/button";
 import Link from "next/link";
 import { getCollege } from "@/action/post";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/authOptions";
-import Image from "next/image";
+import { LogIn } from "lucide-react";
+import { Button } from "./ui/button";
 
 const NavUser = async () => {
   const session = await getServerSession(authOptions);
@@ -51,7 +51,10 @@ const NavUser = async () => {
     </div>
   ) : (
     <Link href={"/login"}>
-      <Button className="bg-yellow-300 rounded-xl">Login</Button>
+      <Button type="submit" className="mx-auto">
+        <LogIn className="w-4 h-4 mr-2" />
+        Login
+      </Button>
     </Link>
   );
 };

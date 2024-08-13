@@ -53,8 +53,8 @@ export default function Login() {
       if (res?.error) {
         toast.error(res.error);
       } else {
-        toast.success("Login Successfully.");
         window.location.reload();
+        toast.success("Login Successfully.");
       }
     } catch (error) {
       toast.error(error.message);
@@ -74,13 +74,13 @@ export default function Login() {
             </span>
           </CardTitle>
           {/* <CardDescription>Login to acess</CardDescription> */}
+          <LoginSignupNav />
         </CardHeader>
-        <LoginSignupNav />
         <CardContent>
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="space-y-8 flex flex-col"
+              className="gap-2 flex flex-col"
               autoComplete="off"
             >
               <FormField

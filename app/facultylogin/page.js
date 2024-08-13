@@ -78,7 +78,7 @@ export default function FacultyLogin() {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="space-y-8 flex flex-col"
+              className="gap-2 flex flex-col"
               autoComplete="off"
             >
               <FormField

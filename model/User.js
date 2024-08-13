@@ -13,8 +13,13 @@ const UserSchema = new mongoose.Schema({
   },
   email: {
     type: String,
+    required: [true, "Email is Required."],
     trim: true,
     unique: true,
+  },
+  emailVerified: {
+    type: Boolean,
+    default: false,
   },
   roll: {
     type: String,
