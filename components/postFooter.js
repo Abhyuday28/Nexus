@@ -6,6 +6,7 @@ import UserIcon from "./userIcon";
 import { toast } from "sonner";
 import { likePost } from "@/action/post";
 import { useRouter } from "next/navigation";
+import { Button } from "./ui/button";
 
 const PostFooter = ({
   isLiked,
@@ -93,6 +94,13 @@ const PostFooter = ({
                 placeholder="add a comment."
                 className="border-0 outline-none w-full bg-gray-50"
               />
+              <Button
+                type="submit"
+                disabled={loading}
+                className=" border rounded-md bg-yellow-400 flex w-auto min-w-16 justify-center hover:bg-yellow-300 active:bg-yellow-200 focus:outline-none"
+              >
+                Reply
+              </Button>
             </div>
           </div>
 

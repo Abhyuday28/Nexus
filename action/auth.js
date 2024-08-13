@@ -42,21 +42,13 @@ export const signup = async (data) => {
         110: "EEE",
       };
 
-      let rollno, year;
+      let year;
       if (isLE) {
-        rollno = parseInt(
-          roll
-            .split("")
-            .filter((char) => !isNaN(char) && char !== " ")
-            .join("")
-        );
-
         year =
           Math.floor(new Date().getFullYear() / 100) * 100 +
           Math.floor(registration / 1000000000) -
           1;
       } else {
-        rollno = parseInt(roll);
         year =
           Math.floor(new Date().getFullYear() / 100) * 100 +
           Math.floor(registration / 1000000000);
@@ -72,7 +64,7 @@ export const signup = async (data) => {
         firstName,
         lastName,
         password,
-        roll: rollno,
+        roll,
         email,
         isLE,
         batch: year,

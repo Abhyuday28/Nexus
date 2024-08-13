@@ -8,7 +8,7 @@ export default async function FacultyCard() {
   const userlist = res.data;
 
   return userlist.length ? (
-    <Card className="w-full max-w-md border-0">
+    <Card className="w-full max-w-md border-0 rounded-none">
       <CardContent className="space-y-4 p-6 max-h-[300px] overflow-auto">
         {userlist.map((user, i) => {
           return (
@@ -21,11 +21,11 @@ export default async function FacultyCard() {
                 img={user.image}
                 name={`${user.firstName} ${user.lastName}`}
               />
-              <div>
+              <div className="">
                 <p className="font-medium">
                   {user.firstName} {user.lastName}
                 </p>
-                <p className="text-muted-foreground text-sm">{user.branch}</p>
+                {/* <p className="text-muted-foreground text-sm">{user.branch}</p> */}
               </div>
             </button>
           );

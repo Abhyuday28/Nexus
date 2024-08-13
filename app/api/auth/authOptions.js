@@ -22,18 +22,7 @@ export const authOptions = {
           if (validatedData.success) {
             const { roll, password } = validatedData.data;
 
-            const isLE =
-              roll.includes("le") ||
-              roll.includes("Le") ||
-              roll.includes("LE") ||
-              roll.includes("lE");
-
-            const user = await User.findOne({
-              $and: [
-                { roll: isLE ? Math.abs(parseInt(roll.slice(2))) : roll },
-                { isLE },
-              ],
-            });
+            const user = await User.findOne({ roll });
 
             if (!user) {
               throw new Error("You are not registered!.");
