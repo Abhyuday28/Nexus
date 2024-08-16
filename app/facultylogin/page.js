@@ -25,25 +25,28 @@ import {
 import { LogIn } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { loginSchema } from "@/schema/zodSchema";
+import { facultyLoginSchema } from "@/schema/zodSchema";
 import { signIn } from "next-auth/react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import LoginSignupNav from "@/components/loginSignupNav";
+import { useState } from "react";
 
 export default function FacultyLogin() {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const form = useForm({
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(facultyLoginSchema),
     defaultValues: {
-      roll: "",
+      email: "",
       password: "",
     },
   });
 
   async function onSubmit(values) {
     try {
+      setLoading(true);
       const res = await signIn("credentials", {
         ...values,
         redirect: false,
@@ -52,10 +55,12 @@ export default function FacultyLogin() {
         toast.error(res.error);
       } else {
         toast.success("Login Successfully.");
-        router.push("/academic");
+        window.location.href = "/academic";
       }
     } catch (error) {
       toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
   }
   return (
@@ -88,7 +93,11 @@ export default function FacultyLogin() {
                   <FormItem>
                     <FormLabel>Enter your email</FormLabel>
                     <FormControl>
-                      <Input placeholder="abcd12@gmail.com" {...field} />
+                      <Input
+                        disabled={loading}
+                        placeholder="abcd12@gmail.com"
+                        {...field}
+                      />
                     </FormControl>
                     <FormDescription>Nexus registered e-mail</FormDescription>
                     <FormMessage />
@@ -105,6 +114,7 @@ export default function FacultyLogin() {
                       <Input
                         type="password"
                         placeholder="*********"
+                        disabled={loading}
                         {...field}
                       />
                     </FormControl>
@@ -116,7 +126,7 @@ export default function FacultyLogin() {
               <Link href={"#"} className="text-blue-400 ml-auto text-xs">
                 forgot password?
               </Link>
-              <Button type="submit" className="mx-auto">
+              <Button disabled={loading} type="submit" className="mx-auto">
                 <LogIn className="w-4 h-4 mr-2" />
                 Login
               </Button>

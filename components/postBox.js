@@ -7,9 +7,10 @@ import { Skeleton } from "./ui/skeleton";
 import { useState } from "react";
 import { toast } from "sonner";
 import { addPost } from "@/action/post";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const PostBox = () => {
+  const router = useRouter();
   const pathname = usePathname();
   const session = useSession();
   const name = session.data?.user?.name;
@@ -28,8 +29,9 @@ const PostBox = () => {
         user: id,
         content,
       });
-      if (res.success) {
-      }
+      // if (res.success) {
+      //   router.refresh();
+      // }
       toast[res.type](res.message);
     } catch (error) {
       toast.error(error.message);

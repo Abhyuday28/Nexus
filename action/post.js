@@ -1,6 +1,7 @@
 "use server";
 import { dbConnect } from "@/lib/connection";
 import { College } from "@/model/College";
+import { Faculty } from "@/model/Faculty";
 import { Post } from "@/model/Post";
 import { User } from "@/model/User";
 import { revalidatePath } from "next/cache";
@@ -22,8 +23,7 @@ export const getAcademicPosts = async () => {
       },
       {
         path: "user",
-        model: User,
-        match: { role: "Faculty" },
+        model: Faculty,
         select: "firstName lastName image email branch",
         options: { sort: { createdAt: -1 } },
       },
@@ -31,7 +31,7 @@ export const getAcademicPosts = async () => {
         path: "comments.user",
         model: User,
       },
-    ]);
+    ]).sort({createdAt:-1})
     return {
       data: posts.filter((p) => p.user),
       message: "Post fetched Successfully",
@@ -49,29 +49,31 @@ export const getAcademicPosts = async () => {
 };
 export const getSocialPosts = async () => {
   try {
-    const posts = await Post.find().populate([
-      {
-        path: "likes",
-        model: User,
-        select: "firstName lastName image email",
-        options: { sort: { createdAt: -1 } },
-      },
-      {
-        path: "comments.likes",
-        model: User,
-      },
-      {
-        path: "user",
-        model: User,
-        match: { role: "Student" },
-        select: "firstName lastName image email branch",
-        options: { sort: { createdAt: -1 } },
-      },
-      {
-        path: "comments.user",
-        model: User,
-      },
-    ]);
+    const posts = await Post.find()
+      .populate([
+        {
+          path: "likes",
+          model: User,
+          select: "firstName lastName image email",
+          options: { sort: { createdAt: -1 } },
+        },
+        {
+          path: "comments.likes",
+          model: User,
+        },
+        {
+          path: "user",
+          model: User,
+          match: { role: "Student" },
+          select: "firstName lastName image email branch",
+          options: { sort: { createdAt: -1 } },
+        },
+        {
+          path: "comments.user",
+          model: User,
+        },
+      ])
+      .sort({ createdAt: -1 });
     return {
       data: posts.filter((p) => p.user),
       message: "Post fetched Successfully",

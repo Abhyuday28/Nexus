@@ -78,10 +78,10 @@ export const signup = async (data) => {
       });
 
       const otp = Math.floor(100000 + Math.random() * 900000);
-      await Token.create({ email, token: uuidv4(), otp });
+      const token = await Token.create({ email, token: uuidv4(), otp });
 
       const res = await sendSignupOTP({ to: email, otp });
-
+      if (res.success) res.token = token.token;
       return res;
     }
   } catch (error) {
@@ -127,7 +127,7 @@ export const facultySignup = async (data) => {
       const token = await Token.create({ email, token: uuidv4(), otp });
 
       const res = await sendSignupOTP({ to: email, otp });
-
+      if (res.success) res.token = token.token;
       return res;
     }
   } catch (error) {
@@ -142,6 +142,8 @@ export const facultySignup = async (data) => {
 export const verifyOtp = async ({ token, otp }) => {
   try {
     const validToken = await Token.findOne({ token, otp });
+
+    console.log(token, otp);
     if (!validToken)
       return {
         message: "Invalid OTP.",

@@ -37,10 +37,11 @@ const UserCard = () => {
         <CardContent className="text-center">
           <div className="space-y-1">
             <h3 className="text-xl font-semibold">{user?.name}</h3>
-            <p className="text-sm text-muted-foreground">@{user?.roll}</p>
+            {user?.roll ? (
+              <p className="text-sm text-muted-foreground">@{user?.roll}</p>
+            ) : null}
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Passionate software engineer, always learning and exploring new
-              technologies.
+              About You.
             </p>
           </div>
 

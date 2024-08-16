@@ -1,11 +1,12 @@
 "use server";
 import { dbConnect } from "@/lib/connection";
+import { Faculty } from "@/model/Faculty";
 import { User } from "@/model/User";
 
 dbConnect();
 export const getStudents = async () => {
   try {
-    const users = await User.find({ role: "Student" });
+    const users = await User.find();
     return {
       data: users,
       message: "Users fetched Successfully",
@@ -24,7 +25,7 @@ export const getStudents = async () => {
 
 export const getFaculty = async () => {
   try {
-    const users = await User.find({ role: "Faculty" });
+    const users = await Faculty.find();
     return {
       data: users,
       message: "Users fetched Successfully",

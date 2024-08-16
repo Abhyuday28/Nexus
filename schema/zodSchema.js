@@ -13,6 +13,13 @@ export const loginSchema = z.object({
     message: "Password length should be 8 character long.",
   }),
 });
+
+export const facultyLoginSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(8, {
+    message: "Password length should be 8 character long.",
+  }),
+});
 export const emailVerificationSchema = z.object({
   otp: z.string().length(6, {
     message: "Invalid OTP",
