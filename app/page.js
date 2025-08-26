@@ -8,9 +8,9 @@ export default function Component() {
         titleComponent={
           <>
             <h1 className="text-4xl font-semibold text-black dark:text-white">
-              For joining Nexus events <br />
+            Scroll Down for joining the <br />
               <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
-                Scroll Down
+              Nexus-academic
               </span>
             </h1>
           </>
