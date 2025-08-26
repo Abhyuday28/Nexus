@@ -83,7 +83,7 @@ const Social = async () => {
                   </SelectContent>
                 </Select>
               </div>
-              <div className="flex items-center relative border rounded-md gap-2 w-full md:w-auto">
+              <div className=" h-10 flex items-center relative border rounded-md gap-2 w-full md:w-auto">
                 <Search className="w-5 h-5 ml-2" />
                 <input
                   className="items-center rounded-md bg-transparent focus:outline-none w-full"

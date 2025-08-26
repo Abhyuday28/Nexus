@@ -3,14 +3,14 @@ import Link from "next/link";
 
 export default function Component() {
   return (
-    <>
+    <div className="min-h-screen w-full bg-[#FAF9F6]">
       <ContainerScroll
         titleComponent={
           <>
             <h1 className="text-4xl font-semibold text-black dark:text-white">
-            Scroll Down for joining the <br />
+              Scroll Down for joining the <br />
               <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
-              Nexus-academic
+                Nexus-academic
               </span>
             </h1>
           </>
@@ -45,6 +45,6 @@ export default function Component() {
           </div>
         </section>
       </ContainerScroll>
-    </>
+    </div>
   );
 }
