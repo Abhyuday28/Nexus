@@ -85,7 +85,7 @@ const Post = async ({ post }) => {
 
         {/* the picture of the post */}
 
-        <div className={`p-4 flex min-h-32 max-h-[600px] `}>
+        <div className={`p-4 flex min-h-20 max-h-[600px] `}>
           <PostContent content={post.content} imgs={post.images} />
         </div>
 

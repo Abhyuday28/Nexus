@@ -12,7 +12,7 @@ export default function Header() {
     <>
       <header className="bg-background h-16 flex items-center justify-between px-8 border-b sticky top-0 z-50">
         {/* LOGO */}
-        <Link href={"/"} className="">
+        <Link href={"/academic"} className="">
           <div
             className={`text-2xl font-semibold text-black ${tenor_Sans.className}`}
           >

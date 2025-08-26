@@ -16,7 +16,7 @@ export default function Component() {
           </>
         }
       >
-        <section className="relative h-screen w-full overflow-hidden">
+        <section className="relative h-full w-auto overflow-hidden">
           <div className="absolute inset-0 z-0">
             <img
               src="/bgbanner.jpg"
