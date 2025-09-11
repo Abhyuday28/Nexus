@@ -9,7 +9,7 @@ const Nav = () => {
   const session = useSession();
 
   return session.status !== "authenticated" ? null : (
-    <nav className="h-16 p-2 grid  grid-cols-10 gap-4 px-8 sticky top-16 z-50 bg-background">
+    <nav className="h-16 p-2 grid  grid-cols-10 gap-4 px-8 sticky top-18 z-50 bg-background">
       <Link
         href={"/academic"}
         className={`p-2 rounded-xl flex items-center justify-center transition-all duration-500 shadow-sm hover:shadow-md active:shadow-inner

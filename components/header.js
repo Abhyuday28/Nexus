@@ -13,10 +13,14 @@ export default function Header() {
       <header className="bg-background h-16 flex items-center justify-between px-8 border-b sticky top-0 z-50">
         {/* LOGO */}
         <Link href={"/academic"} className="">
-          <div
-            className={`text-2xl font-semibold text-black ${tenor_Sans.className}`}
-          >
-            <Image src={"/nexus.svg"} width={120} height={120} alt="logo" />
+          <div>
+            <Image
+              src={"/nexus.svg"}
+              width={120}
+              height={120}
+              alt="logo"
+              className="w-[160px] h-[160px] sm:w-[120px] sm:h-[120px] md:w-[120px] md:h-[120px]"
+            />
           </div>
         </Link>
 

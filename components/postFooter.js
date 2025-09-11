@@ -1,6 +1,6 @@
 "use client";
 import { formatDate } from "@/lib/utils";
-import { MessageSquare, Reply, Share, Sparkles } from "lucide-react";
+import { MessageSquare, Reply, Share, Sparkles, Info } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import UserIcon from "./userIcon";
 import { toast } from "sonner";
@@ -20,6 +20,7 @@ const PostFooter = ({
 }) => {
   const [showComments, setShowComments] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showDate, setShowDate] = useState(false);
 
   const router = useRouter();
 
@@ -41,7 +42,7 @@ const PostFooter = ({
   return (
     <div>
       {/* react, comment, share section  */}
-      <div className=" flex items-center rounded-b-md border-t p-3 px-4 justify-between">
+      <div className="flex items-center rounded-b-md border-t p-3 px-4 justify-between">
         <div className="flex gap-6">
           {/* like button */}
           <button
@@ -72,10 +73,28 @@ const PostFooter = ({
           </button>
         </div>
 
-        {/* post upload time */}
-        <h3 className="text-muted-foreground text-xs">
-          {formatDate(postedAt)}
-        </h3>
+        {/* info button for date/time (hover to show date) */}
+        <div>
+          <div
+            onMouseEnter={() => setShowDate(true)}
+            onMouseLeave={() => setShowDate(false)}
+            className="inline-block"
+          >
+            {showDate ? (
+              <span className="text-muted-foreground text-xs px-2 py-1 rounded bg-gray-100">
+                {formatDate(postedAt)}
+              </span>
+            ) : (
+              <button
+                className="p-1 rounded-full hover:bg-gray-200 transition"
+                aria-label="Show date and time"
+                tabIndex={0}
+              >
+                <Info className="w-4 h-4 text-muted-foreground" />
+              </button>
+            )}
+          </div>
+        </div>
       </div>
 
       {/* write comment section------ */}

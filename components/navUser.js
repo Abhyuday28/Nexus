@@ -24,7 +24,7 @@ const NavUser = async () => {
       </button> */}
 
       {college?.code === 113 ? (
-        <button className="w-14 h-14 rounded-full bg-gray-200 flex items-center justify-center">
+        <button className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center">
           <img
             src={`https://www.mcemotihari.ac.in/wp-content/themes/theme-college/assets/img/logo.jpg`}
             width={68}
@@ -32,7 +32,7 @@ const NavUser = async () => {
           />
         </button>
       ) : college?.code === 107 ? (
-        <button className="w-14 h-14 rounded-full bg-gray-200 flex items-center justify-center">
+        <button className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center">
           <img
             src={`https://www.mitmuzaffarpur.org/wp-content/themes/mit/assets/img/mit-logo.jpg`}
             width={68}
@@ -40,7 +40,7 @@ const NavUser = async () => {
           />
         </button>
       ) : college?.code === 129 ? (
-        <button className="w-14 h-14 rounded-full bg-gray-200 flex items-center justify-center">
+        <button className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center">
           <img
             src={`https://th.bing.com/th/id/OIP.wDOsXpMiVbMIBA1MWi8fIgHaHa?rs=1&pid=ImgDetMain`}
             width={68}
